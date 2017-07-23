@@ -33,8 +33,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions\Initialize-Project.ps1" />
+    <Compile Include="Tests\EmptyPSProject\Script.ps1" />
     <Compile Include="Tests\Initialize-Project.tests.ps1" />
     <Compile Include="PSIS.psd1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tests\EmptyPSProject\EmptyPSProject.pssproj" />
+    <Content Include="Tests\EmptyPSProject\EmptyPSProject.sln" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
