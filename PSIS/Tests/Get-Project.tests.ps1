@@ -5,7 +5,10 @@ Describe "Get-Project" {
 		It "Runs" {
 			$projectName = "EmptyPSProject"
 			$projectPath = "$PSScriptRoot/$projectName"
-			Get-Project -Name $projectName -Path $projectPath | Should be
+
+			$project = Get-Project -Name $projectName -Path $projectPath
+			$project.Name | Should be $projectName
+			$project.Path | Should be $projectPath
 		}
 	}
 }

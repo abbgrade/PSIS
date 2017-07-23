@@ -4,13 +4,20 @@
 
 Function New-Script {
 	Param (
-		[string] $Name
+		[string] $Name,
+		$Project
 	)
+
+	If (Test-Path $Project.Path) {
+		Write-Error "$( $Project.Path ) does not exist."
+	}
 
 	$script = @{
 		"Name" = $Name
 		"FullName" = "$($Project.Path)/$Name.$Type"
 	}
+
+	Set-Content $script.FullName -Value "Test"
 
 	$script
 }
