@@ -4,17 +4,18 @@
 
 Function New-TestProject {
 	Param (
-		[string] $Name,
-		[string] $Path
+		$Template,
+		[string] $Path = $testDrive
 	)
 
-	Foreach ($file in Get-ChildItem $Path -Recurse) {
+	Foreach ($file in Get-ChildItem $Template.Path -Recurse) {
 		Write-Debug $file.FullName
 	}
 
 	$project = @{
-		"Name" = $Name
-		"Path" = "TestDrive:"
+		"Name" = $Template.Name
+		"Path" = $Path
+		"ServerInstance" = $Template.ServerInstance
 	}
 
 	$project

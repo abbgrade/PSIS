@@ -5,16 +5,18 @@
 Function Get-Project {
 	Param (
 		[string] $Name,
-		[string] $Path
+		[string] $Path,
+		[string] $ServerInstance
 	)
 
-	If (Test-Path $Path) {
+	If (-Not ( Test-Path $Path -PathType Container )) {
 		Write-Error "$( $Path ) does not exist."
 	}
 
 	$project = @{
 		"Name" = $Name
 		"Path" = $Path
+		"ServerInstance" = $ServerInstance
 	}
 
 	$project

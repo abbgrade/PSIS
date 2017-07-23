@@ -11,7 +11,8 @@ Function New-Script {
 
 	$script = @{
 		"Name" = $Name
-		"FullName" = "$($Project.Path)/$Name.$($Type.ToLower())"
+		"Type" = $Type
+		"FullName" = "$($Project.Path)\$Name.$($Type.ToLower())"
 	}
 
 	Set-Content $script.FullName -Value "Test"

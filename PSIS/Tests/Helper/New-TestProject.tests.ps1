@@ -3,16 +3,17 @@
 . "$PSScriptRoot\New-TestProject.ps1"
 
 Describe "New-TestProject" {
-	Context "Exists" {
-		It "Runs" {
+	Context "Create test project" {
+		It "Runs from template" {
 			$projectName = "EmptyPSProject"
-			$projectPath = "$PSScriptRoot/$projectName"
+			$projectPath = "$PSScriptRoot\..\$projectName"
 
-			$template = Get-Project -Name $projectName -Path $projectPath
+			$template = Get-Project -Name $projectName -Path $projectPath -ServerInstance "Test"
 
-			$copy = New-TestProject -Name $projectName -Path $projectPath
+			$copy = New-TestProject -Template $template
 
 			$copy.Name | Should be $template.Name
+			$copy.ServerInstance | Should be "Test"
 		}
 	}
 }
