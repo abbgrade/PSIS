@@ -1,7 +1,10 @@
 ﻿Describe "Initialize-Project" {
 	Context "Exists" {
 		It "Runs" {
-			1 | Should Be 1
+			$projectName = "EmptyPSProject"
+			$projectPath = "$PSScriptRoot/$projectName"
+
+			Initialize-Project -Name $projectName -Path $projectPath
 		}
 	}
 }
