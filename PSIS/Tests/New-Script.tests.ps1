@@ -3,19 +3,18 @@
 . "$PSScriptRoot\Helper\New-TestProject.ps1"
 
 Describe "New-Script" {
-	BeforeEach {
-		$projectName = "EmptyPSProject"
-		$projectPath = "$PSScriptRoot\$projectName"
-
-		$project = New-TestProject `
-			-Template (
-				Get-Project `
-					-Name $projectName `
-					-Path $projectPath
-			)
-	}
-
 	Context "Test project" {
+		BeforeEach {
+			$projectName = "EmptyPSProject"
+			$projectPath = "$PSScriptRoot\$projectName"
+
+			$project = New-TestProject `
+				-Template (
+					Get-Project `
+						-Name $projectName `
+						-Path $projectPath
+				)
+		}
 		It "Create new SQL script" {
 			$script = New-Script `
 				-Name "Test.sql" `
