@@ -1,4 +1,4 @@
-﻿Import-Module "$PSScriptRoot\.." -Force -Verbose
+﻿Import-Module "$PSScriptRoot\.." -Force
 
 Describe "Initialize-Project" {
 	It "Initializes a Visual Studio project" {

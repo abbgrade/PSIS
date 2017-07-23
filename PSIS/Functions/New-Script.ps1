@@ -12,10 +12,10 @@ Function New-Script {
 	$script = @{
 		"Name" = $Name
 		"Type" = $Type
-		"FullName" = "$($Project.Path)\$Name.$($Type.ToLower())"
+		"Path" = "$($Project.Path)\$Name.$($Type.ToLower())"
 	}
 
-	Set-Content $script.FullName -Value "Test"
+	Set-Content $script.Path -Value "Test"
 
 	$script
 }

@@ -4,7 +4,7 @@
 
 Function Initialize-Project {
 	Param (
-		$projectName,
+		$Name,
 		$Path
 	)
 }

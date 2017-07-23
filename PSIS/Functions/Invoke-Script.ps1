@@ -22,7 +22,7 @@ Function Invoke-Script {
 		Switch ($Script.Type) {
 			"SQL" {
 				Write-Verbose "Invoke as SQL"
-				$execution = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.FullName
+				$execution = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
 				$result.ReturnCode = 0
 			}
 			default {

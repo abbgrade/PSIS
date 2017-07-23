@@ -1,4 +1,4 @@
-﻿Import-Module "$PSScriptRoot\.." -Force -Verbose
+﻿Import-Module "$PSScriptRoot\.." -Force
 
 . "$PSScriptRoot\Helper\New-TestProject.ps1"
 
@@ -18,10 +18,16 @@ Describe "Invoke-Script" {
 
 	Context "Test project" {
 		It "Invokes a simple SQL script" {
-			$script = New-Script -Name "Test" -Type "SQL" -Project $project
-			"SELECT 42 AS value;" | Set-Content -Path $script.FullName
+			$script = New-Script `
+				-Name "Test" `
+				-Type "SQL" `
+				-Project $project
 
-			$result = Invoke-Script -Script $script -ServerInstance $project.ServerInstance
+			"SELECT 42 AS value;" | Set-Content -Path $script.Path
+
+			$result = Invoke-Script `
+				-Script $script `
+				-ServerInstance $project.ServerInstance
 
 			$result.ReturnCode | Should be 0
 		}

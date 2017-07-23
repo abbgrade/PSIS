@@ -34,11 +34,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Functions\Get-Project.ps1" />
+    <Compile Include="Functions\Get-Script.ps1" />
     <Compile Include="Functions\Initialize-Project.ps1" />
     <Compile Include="Functions\Invoke-Script.ps1" />
     <Compile Include="Functions\New-Script.ps1" />
     <Compile Include="Tests\EmptyPSProject\Script.ps1" />
     <Compile Include="Tests\Get-Project.tests.ps1" />
+    <Compile Include="Tests\Get-Script.tests.ps1" />
     <Compile Include="Tests\Helper\New-TestProject.tests.ps1" />
     <Compile Include="Tests\Initialize-Project.tests.ps1" />
     <Compile Include="PSIS.psd1" />

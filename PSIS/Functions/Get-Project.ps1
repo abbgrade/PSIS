@@ -9,14 +9,17 @@ Function Get-Project {
 		[string] $ServerInstance
 	)
 
-	If (-Not ( Test-Path $Path -PathType Container )) {
-		Write-Error "$( $Path ) does not exist."
-	}
+	$Path = ( Get-Item -Path $Path ).FullName
+
+	$scripts = Get-ChildItem $Path -Recurse `
+		| Foreach { Get-Script -Path $_.FullName } `
+		| Sort Path
 
 	$project = @{
 		"Name" = $Name
 		"Path" = $Path
 		"ServerInstance" = $ServerInstance
+		"Scripts" = $scripts
 	}
 
 	$project
