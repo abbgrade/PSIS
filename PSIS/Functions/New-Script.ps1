@@ -8,10 +8,6 @@ Function New-Script {
 		$Project
 	)
 
-	If (Test-Path $Project.Path) {
-		Write-Error "$( $Project.Path ) does not exist."
-	}
-
 	$script = @{
 		"Name" = $Name
 		"FullName" = "$($Project.Path)/$Name.$Type"

@@ -1,10 +1,16 @@
 ﻿Import-Module "$PSScriptRoot\.." -Force -Verbose
 
+. "$PSScriptRoot\Helper\New-TestProject.ps1"
+
 Describe "New-Script" {
 	BeforeEach {
 		$projectName = "EmptyPSProject"
 		$projectPath = "$PSScriptRoot/$projectName"
-		$project = Get-Project -Name $projectName -Path $projectPath
+
+		$project = New-TestProject -Name $projectName -Path $projectPath
+	}
+
+	AfterEach {
 	}
 
 	Context "Exists" {

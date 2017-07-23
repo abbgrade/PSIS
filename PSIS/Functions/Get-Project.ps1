@@ -8,6 +8,10 @@ Function Get-Project {
 		[string] $Path
 	)
 
+	If (Test-Path $Path) {
+		Write-Error "$( $Path ) does not exist."
+	}
+
 	$project = @{
 		"Name" = $Name
 		"Path" = $Path
