@@ -20,8 +20,13 @@ Function Invoke-Script {
 	Try {
 		Switch ($type) {
 			"SQL" {
-				Write-Verbose "Invoke as SQL"
+				Write-Verbose "Invoke '$($Script.Path)' as SQL script"
 				$execution = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
+				$result.ReturnCode = 0
+			}
+			"PS1" {
+				Write-Verbose "Invoke '$($Script.Path)' as Powershell script"
+				. $Script.Path
 				$result.ReturnCode = 0
 			}
 			default {

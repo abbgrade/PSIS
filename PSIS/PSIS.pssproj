@@ -36,6 +36,7 @@
     <Compile Include="Functions\Get-Project.ps1" />
     <Compile Include="Functions\Get-Script.ps1" />
     <Compile Include="Functions\Initialize-Project.ps1" />
+    <Compile Include="Functions\Invoke-Load.ps1" />
     <Compile Include="Functions\Invoke-Script.ps1" />
     <Compile Include="Functions\New-Load.ps1" />
     <Compile Include="Functions\New-Script.ps1" />
@@ -45,6 +46,7 @@
     <Compile Include="Tests\Helper\New-TestProject.tests.ps1" />
     <Compile Include="Tests\Initialize-Project.tests.ps1" />
     <Compile Include="PSIS.psd1" />
+    <Compile Include="Tests\Invoke-Load.tests.ps1" />
     <Compile Include="Tests\Invoke-Script.tests.ps1" />
     <Compile Include="Tests\New-Load.tests.ps1" />
     <Compile Include="Tests\New-Script.tests.ps1" />

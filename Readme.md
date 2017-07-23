@@ -3,11 +3,12 @@
 
 ## Use Cases
 
-### UC1 - Create a new batch job
+### UC1 - Create a new batch load
 
-The use creates a new Powershell-Project in Visual Studio and wants to:
+The user creates a new Powershell-Project in Visual Studio and wants to:
 - Initialize it as a PSIS project.
 - Create a SQL script as first job step.
+- Execute the job against a database.
 
 ## Contributing to PSIS
 
