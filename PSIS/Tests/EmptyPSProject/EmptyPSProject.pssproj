@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MyApplication</RootNamespace>
     <AssemblyName>MyApplication</AssemblyName>
-    <Name>PSIS</Name>
+    <Name>EmptyPSProject</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,17 +26,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Functions\" />
-    <Folder Include="Tests\" />
-    <Folder Include="Tests\EmptyPSProject\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Functions\Initialize-Project.ps1" />
-    <Compile Include="Tests\Initialize-Project.tests.ps1" />
-    <Compile Include="PSIS.psd1" />
-    <Compile Include="PSIS.psm1" />
-    <Compile Include="PSIS.tests.ps1" />
+    <Compile Include="Script.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
