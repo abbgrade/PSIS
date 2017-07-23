@@ -15,10 +15,11 @@ Describe "New-Script" {
 
 	Context "Exists" {
 		It "Runs" {
-			$script = New-Script -Name "Test" -Project $project
+			$script = New-Script -Name "Test" -Type "SQL" -Project $project
 
 			$script.Name | Should be "Test"
 			$script.FullName | Should exist
+			$script.FullName | Should beLike "*.sql"
 		}
 	}
 }
