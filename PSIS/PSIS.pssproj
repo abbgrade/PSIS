@@ -35,8 +35,6 @@
     <Compile Include="Functions\Initialize-Project.ps1" />
     <Compile Include="Tests\Initialize-Project.tests.ps1" />
     <Compile Include="PSIS.psd1" />
-    <Compile Include="PSIS.psm1" />
-    <Compile Include="PSIS.tests.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
