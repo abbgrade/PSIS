@@ -5,14 +5,12 @@
 Function New-Script {
 	Param (
 		[string] $Name,
-		[string] $Type,
 		$Project
 	)
 
 	$script = @{
 		"Name" = $Name
-		"Type" = $Type
-		"Path" = "$($Project.Path)\$Name.$($Type.ToLower())"
+		"Path" = "$($Project.Path)\$Name"
 	}
 
 	Set-Content $script.Path -Value "Test"

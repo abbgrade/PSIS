@@ -16,10 +16,9 @@ Function Invoke-Script {
 		"Error" = $null
 	}
 
-	Write-Host $Script.FullName
-
+	$type = $Script.Path.Split(".")[-1].ToUpper()
 	Try {
-		Switch ($Script.Type) {
+		Switch ($type) {
 			"SQL" {
 				Write-Verbose "Invoke as SQL"
 				$execution = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
@@ -27,7 +26,7 @@ Function Invoke-Script {
 			}
 			default {
 				$result.ReturnCode = 1
-				$result.Error = "Script type $( $Script.Type ) is not implemented."
+				$result.Error = "Script type $type is not implemented."
 				Write-Warning $result.Error
 			}
 		}

@@ -18,12 +18,10 @@ Describe "New-Script" {
 	Context "Test project" {
 		It "Create new SQL script" {
 			$script = New-Script `
-				-Name "Test" `
-				-Type "SQL" `
+				-Name "Test.sql" `
 				-Project $project
 
-			$script.Name | Should be "Test"
-			$script.Type | Should be "SQL"
+			$script.Name | Should be "Test.sql"
 			$script.Path | Should exist
 			$script.Path | Should beLike "*.sql"
 

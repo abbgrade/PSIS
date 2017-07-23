@@ -19,8 +19,7 @@ Describe "Invoke-Script" {
 	Context "Test project" {
 		It "Invokes a simple SQL script" {
 			$script = New-Script `
-				-Name "Test" `
-				-Type "SQL" `
+				-Name "Test.sql" `
 				-Project $project
 
 			"SELECT 42 AS value;" | Set-Content -Path $script.Path
