@@ -14,7 +14,7 @@ The user creates a new Powershell-Project in Visual Studio and wants to:
 
 ## Roadmap
 
-- [*] Create and run simple loads
+- [x] Create and run simple loads
 - [ ] Add logging
 - [ ] Continue load
 - [ ] Azure readyness
