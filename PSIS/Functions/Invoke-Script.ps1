@@ -45,6 +45,7 @@ Function Invoke-Script {
 
 				$sqlSource = Get-Content -Path $Script.Path | Out-String
 				$sqlServer = New-Object 'Microsoft.SqlServer.Management.Smo.Server' $ServerInstance
+				$sqlServer.ConnectionContext.StatementTimeout = 0
 
 				Try {
 					$sqlResult = $sqlServer.ConnectionContext.ExecuteNonQuery($sqlSource)
