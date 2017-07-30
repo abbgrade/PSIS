@@ -2,6 +2,8 @@
 # Invoke_Script.ps1
 #
 
+Add-Type -Path "C:\Program Files\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Smo.dll"
+
 Import-Module dbatools
 If (-not ([System.Management.Automation.PSTypeName]'ScriptReturnCode').Type) {
 	Add-Type -TypeDefinition @"
@@ -36,11 +38,29 @@ Function Invoke-Script {
 
 				If ( -not $ServerInstance) {
 					$result.ReturnCode = [ScriptReturnCode]::InvalidArgument
-					Write-Error "Parameter -ServerInstance is required for SQL scripts."
-					break
+					Throw "Parameter -ServerInstance is required for SQL scripts."
 				}
 
-				$sqlResult = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
+				#$sqlResult = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
+				$sqlSource = Get-Content -Path $Script.Path
+				$sqlConnectionString ="Server = $ServerInstance; Integrated Security = True"
+
+				$sqlServer = New-Object ('Microsoft.SqlServer.Management.Smo.Server')
+				$sqlServer.ConnectionContext.ConnectionString = $sqlConnectionString
+
+				Try {
+					$sqlResult = $sqlServer.ConnectionContext.ExecuteNonQuery($sqlSource)
+				} Catch {
+					If ($_.Exception.InnerException.Message -eq "An exception occurred while executing a Transact-SQL statement or batch.") {
+						Throw $_.Exception.InnerException.InnerException.Message
+					} Else {
+						Write-Verbose $_.Exception.InnerException.Message
+
+						Write-Warning $_
+						Throw $_
+					}
+				}
+
 				$result.ReturnCode = [ScriptReturnCode]::Success
 			}
 			"PS1" {
@@ -62,7 +82,7 @@ Function Invoke-Script {
 	}
 
 	If ($result.ReturnCode -ne [ScriptReturnCode]::Success) {
-		Write-Warning "Script '$($result.Script.Path)' returned with code '$($result.ReturnCode)': '$($result.Error)'"
+		Write-Warning "$($result.ReturnCode) in Script '$($result.Script.Path)': '$($result.Error)'"
 	}
 
 	$result

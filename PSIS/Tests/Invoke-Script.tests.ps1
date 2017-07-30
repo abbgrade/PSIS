@@ -62,16 +62,16 @@ Describe "Invoke-Script" {
 
 		It "Invokes a SQL script with GO" {
 			$script = New-Script `
-				-Name "Test 1.sql" `
+				-Name "Test 4.sql" `
 				-Project $project
 
-			"SELECT 42 AS value;GO" | Set-Content -Path $script.Path
+			"SELECT 42 AS value
+			GO
+			SELECT 43 AS another" | Set-Content -Path $script.Path
 
 			$result = Invoke-Script `
 				-Script $script `
 				-ServerInstance $project.ServerInstance
-
-			Write-Verbose $result.Error -Verbose
 
 			$result.ReturnCode | Should be Success
 		}
