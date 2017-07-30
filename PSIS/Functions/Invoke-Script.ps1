@@ -24,13 +24,14 @@ Function Invoke-Script {
 		[string] $ServerInstance
 	)
 
-	Write-Debug "Start $( $Script.Path )"
-
 	$result = @{
 		"Script" = $Script
 		"ReturnCode" = [ScriptReturnCode]::Undefined
 		"Error" = $null
+		"StartTime" = Get-Date
 	}
+
+	Write-Debug "$( $result.StartTime ) Start $( $Script.Path )"
 
 	$type = $Script.Path.Split(".")[-1].ToUpper()
 	Try {
@@ -84,7 +85,9 @@ Function Invoke-Script {
 		Write-Warning "$($result.ReturnCode) in Script '$($result.Script.Path)': '$($result.Error)'"
 	}
 
-	Write-Debug "Stop $( $Script.Path )"
+	$result.StopTime = Get-Date
+
+	Write-Debug "$( $result.StopTime ) Stop $( $Script.Path )"
 
 	$result
 }
