@@ -12,7 +12,7 @@ Function Invoke-Script {
 
 	$result = @{
 		"Script" = $Script
-		"ReturnCode" = $null
+		"ReturnCode" = -1
 		"Error" = $null
 	}
 
@@ -21,7 +21,7 @@ Function Invoke-Script {
 		Switch ($type) {
 			"SQL" {
 				Write-Verbose "Invoke '$($Script.Path)' as SQL script"
-				$execution = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
+				Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
 				$result.ReturnCode = 0
 			}
 			"PS1" {
@@ -31,19 +31,19 @@ Function Invoke-Script {
 			}
 			default {
 				$result.ReturnCode = 1
-				$result.Error = "Script type $type is not implemented."
-				Write-Warning $result.Error
+				$result.Error = "Script type '$type' is not implemented."
 			}
 		}
 	}
 	Catch {
 		$result.ReturnCode = 2
-		$result.Error = $_.Message
-		Write-Warning $result.Error
+		$result.Error = $_.Exception.Message
 	}
 
 	If ($result.ReturnCode -ne 0) {
-		Write-Error $result.ReturnCode $result.Error
+		Write-Host "RC <> 0"
+		ConvertTo-Json $result | Write-Host
+		Write-Warning "RC$($result.ReturnCode): '$($result.Error)'"
 	}
 
 	$result

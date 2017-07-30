@@ -19,7 +19,7 @@ Describe "Invoke-Script" {
 	Context "Test project" {
 		It "Invokes a simple SQL script" {
 			$script = New-Script `
-				-Name "Test.sql" `
+				-Name "Test 1.sql" `
 				-Project $project
 
 			"SELECT 42 AS value;" | Set-Content -Path $script.Path
@@ -29,6 +29,20 @@ Describe "Invoke-Script" {
 				-ServerInstance $project.ServerInstance
 
 			$result.ReturnCode | Should be 0
+		}
+
+		It "Invokes a faulty SQL script" {
+			$script = New-Script `
+				-Name "Test 2.sql" `
+				-Project $project
+
+			"this is invalid!" | Set-Content -Path $script.Path
+
+			$result = Invoke-Script `
+				-Script $script `
+				-ServerInstance $project.ServerInstance
+
+			$result.ReturnCode | Should be 2
 		}
 	}
 }
