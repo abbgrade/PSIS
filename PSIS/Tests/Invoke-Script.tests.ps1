@@ -44,6 +44,7 @@ Describe "Invoke-Script" {
 
 			$result.ReturnCode | Should be RuntimeError
 		}
+
 		It "Invokes a SQL without Server" {
 			$project.ServerInstance = $null
 			$script = New-Script `
@@ -57,6 +58,22 @@ Describe "Invoke-Script" {
 				-ServerInstance $project.ServerInstance
 
 			$result.ReturnCode | Should be InvalidArgument
+		}
+
+		It "Invokes a SQL script with GO" {
+			$script = New-Script `
+				-Name "Test 1.sql" `
+				-Project $project
+
+			"SELECT 42 AS value;GO" | Set-Content -Path $script.Path
+
+			$result = Invoke-Script `
+				-Script $script `
+				-ServerInstance $project.ServerInstance
+
+			Write-Verbose $result.Error -Verbose
+
+			$result.ReturnCode | Should be Success
 		}
 	}
 }
