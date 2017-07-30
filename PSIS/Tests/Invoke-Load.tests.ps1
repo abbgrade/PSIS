@@ -20,10 +20,12 @@ Describe "Invoke-Load" {
 			$load = New-Load -Project $project
 			$result = Invoke-Load -Load $load
 
-            ConvertTo-Json $result | Write-Host
-
 			$result.Count | Should be $project.Scripts.Count
 			$result.Count | Should be 1
+
+			$result | ForEach-Object {
+				$_.ReturnCode | Should be Success
+			}
 		}
 		It "Invokes a load with SQL" {
 			$script = New-Script `
@@ -39,10 +41,14 @@ Describe "Invoke-Load" {
 			$load = New-Load -Project $project
 			$result = Invoke-Load -Load $load
 
-            ConvertTo-Json $result | Write-Host
+			#ConvertTo-Json $result | Write-Verbose -Verbose
 
 			$result.Count | Should be $project.Scripts.Count
 			$result.Count | Should be 2
+
+			$result | ForEach-Object {
+				$_.ReturnCode | Should be Success
+			}
 		}
 	}
 }

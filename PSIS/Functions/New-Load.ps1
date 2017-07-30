@@ -9,5 +9,6 @@ Function New-Load {
 
 	@{
 		"Scripts" = $Project.Scripts
+		"ServerInstance" = $Project.ServerInstance
 	}
 }

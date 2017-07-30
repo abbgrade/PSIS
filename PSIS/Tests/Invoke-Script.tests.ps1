@@ -28,7 +28,7 @@ Describe "Invoke-Script" {
 				-Script $script `
 				-ServerInstance $project.ServerInstance
 
-			$result.ReturnCode | Should be 0
+			$result.ReturnCode | Should be Success
 		}
 
 		It "Invokes a faulty SQL script" {
@@ -42,7 +42,7 @@ Describe "Invoke-Script" {
 				-Script $script `
 				-ServerInstance $project.ServerInstance
 
-			$result.ReturnCode | Should be 2
+			$result.ReturnCode | Should be RuntimeError
 		}
 		It "Invokes a SQL without Server" {
 			$project.ServerInstance = $null
@@ -56,7 +56,7 @@ Describe "Invoke-Script" {
 				-Script $script `
 				-ServerInstance $project.ServerInstance
 
-			$result.ReturnCode | Should be 2
+			$result.ReturnCode | Should be InvalidArgument
 		}
 	}
 }
