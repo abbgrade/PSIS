@@ -24,6 +24,8 @@ Function Invoke-Script {
 		[string] $ServerInstance
 	)
 
+	Write-Debug "Start $( $Script.Path )"
+
 	$result = @{
 		"Script" = $Script
 		"ReturnCode" = [ScriptReturnCode]::Undefined
@@ -41,11 +43,8 @@ Function Invoke-Script {
 					Throw "Parameter -ServerInstance is required for SQL scripts."
 				}
 
-				$sqlSource = Get-Content -Path $Script.Path
-				$sqlConnectionString ="Server = $ServerInstance; Integrated Security = True"
-
-				$sqlServer = New-Object ('Microsoft.SqlServer.Management.Smo.Server')
-				$sqlServer.ConnectionContext.ConnectionString = $sqlConnectionString
+				$sqlSource = Get-Content -Path $Script.Path | Out-String
+				$sqlServer = New-Object 'Microsoft.SqlServer.Management.Smo.Server' $ServerInstance
 
 				Try {
 					$sqlResult = $sqlServer.ConnectionContext.ExecuteNonQuery($sqlSource)
@@ -83,6 +82,8 @@ Function Invoke-Script {
 	If ($result.ReturnCode -ne [ScriptReturnCode]::Success) {
 		Write-Warning "$($result.ReturnCode) in Script '$($result.Script.Path)': '$($result.Error)'"
 	}
+
+	Write-Debug "Stop $( $Script.Path )"
 
 	$result
 }

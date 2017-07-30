@@ -22,7 +22,10 @@ Describe "Invoke-Script" {
 				-Name "Test 1.sql" `
 				-Project $project
 
-			"SELECT 42 AS value;" | Set-Content -Path $script.Path
+@"
+SELECT 42 AS value;
+"@ `
+			 | Set-Content -Path $script.Path
 
 			$result = Invoke-Script `
 				-Script $script `
@@ -36,7 +39,10 @@ Describe "Invoke-Script" {
 				-Name "Test 2.sql" `
 				-Project $project
 
-			"this is invalid!" | Set-Content -Path $script.Path
+@"
+this is invalid!
+"@ `
+			| Set-Content -Path $script.Path
 
 			$result = Invoke-Script `
 				-Script $script `
@@ -51,7 +57,10 @@ Describe "Invoke-Script" {
 				-Name "Test 3.sql" `
 				-Project $project
 
-			"SELECT 42 AS value;" | Set-Content -Path $script.Path
+@"
+SELECT 42 AS value
+"@ `
+			| Set-Content -Path $script.Path
 
 			$result = Invoke-Script `
 				-Script $script `
@@ -65,9 +74,12 @@ Describe "Invoke-Script" {
 				-Name "Test 4.sql" `
 				-Project $project
 
-			"SELECT 42 AS value
-			GO
-			SELECT 43 AS another" | Set-Content -Path $script.Path
+@"
+SELECT 42 AS value
+GO
+SELECT 43 AS another
+"@ `
+			| Set-Content -Path $script.Path
 
 			$result = Invoke-Script `
 				-Script $script `
@@ -81,11 +93,15 @@ Describe "Invoke-Script" {
 				-Name "Test 4.sql" `
 				-Project $project
 
-			"CREATE TABLE #test (mycol INT);
-			GO
+@"
+CREATE TABLE #test (mycol INT);
+GO
 
-			INSERT INTO #TEST
-			SELECT 42;" | Set-Content -Path $script.Path
+INSERT INTO #TEST
+SELECT 42;
+GO
+"@ `
+			 | Set-Content -Path $script.Path
 
 			$result = Invoke-Script `
 				-Script $script `
