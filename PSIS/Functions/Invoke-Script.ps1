@@ -41,9 +41,7 @@ Function Invoke-Script {
 	}
 
 	If ($result.ReturnCode -ne 0) {
-		Write-Host "RC <> 0"
-		ConvertTo-Json $result | Write-Host
-		Write-Warning "RC$($result.ReturnCode): '$($result.Error)'"
+		Write-Warning "Script '$($result.Script.Path)' returned with code '$($result.ReturnCode)': '$($result.Error)'"
 	}
 
 	$result
