@@ -41,7 +41,6 @@ Function Invoke-Script {
 					Throw "Parameter -ServerInstance is required for SQL scripts."
 				}
 
-				#$sqlResult = Invoke-Sqlcmd2 -ServerInstance $ServerInstance -InputFile $Script.Path
 				$sqlSource = Get-Content -Path $Script.Path
 				$sqlConnectionString ="Server = $ServerInstance; Integrated Security = True"
 

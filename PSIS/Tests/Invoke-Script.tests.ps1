@@ -75,5 +75,23 @@ Describe "Invoke-Script" {
 
 			$result.ReturnCode | Should be Success
 		}
+
+		It "Invokes a SQL script with INSERT" {
+			$script = New-Script `
+				-Name "Test 4.sql" `
+				-Project $project
+
+			"CREATE TABLE #test (mycol INT);
+			GO
+
+			INSERT INTO #TEST
+			SELECT 42;" | Set-Content -Path $script.Path
+
+			$result = Invoke-Script `
+				-Script $script `
+				-ServerInstance $project.ServerInstance
+
+			$result.ReturnCode | Should be Success
+		}
 	}
 }
