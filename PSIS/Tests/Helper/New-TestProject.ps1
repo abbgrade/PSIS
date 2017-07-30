@@ -18,7 +18,8 @@ Function New-TestProject {
 
 		Copy-Item `
 			-Path $file.FullName `
-			-Destination $file.FullName.Replace($Template.Path, $Path)
+			-Destination $file.FullName.Replace($Template.Path, $Path) `
+			-Force
 	}
 
 	Get-Project `

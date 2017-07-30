@@ -44,5 +44,19 @@ Describe "Invoke-Script" {
 
 			$result.ReturnCode | Should be 2
 		}
+		It "Invokes a SQL without Server" {
+			$project.ServerInstance = $null
+			$script = New-Script `
+				-Name "Test 3.sql" `
+				-Project $project
+
+			"SELECT 42 AS value;" | Set-Content -Path $script.Path
+
+			$result = Invoke-Script `
+				-Script $script `
+				-ServerInstance $project.ServerInstance
+
+			$result.ReturnCode | Should be 2
+		}
 	}
 }
