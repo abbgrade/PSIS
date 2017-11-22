@@ -16,6 +16,7 @@ The user creates a new Powershell-Project in Visual Studio and wants to:
 
 - [x] Create and run simple loads
 - [ ] Add logging
+- [ ] Get rid of localdb for Pester
 - [ ] Continue load
 - [ ] Azure readyness
 
