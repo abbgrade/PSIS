@@ -3,17 +3,17 @@
 #
 
 Function New-Script {
-	Param (
-		[string] $Name,
-		$Project
-	)
+    Param (
+        [string] $Name,
+        $Project
+    )
 
-	$script = @{
-		"Name" = $Name
-		"Path" = "$($Project.Path)\$Name"
-	}
+    $script = @{
+        "Name" = $Name
+        "Path" = "$( $Project.Path )\$Name"
+    }
 
-	Set-Content $script.Path -Value "Test"
+    Set-Content $script.Path -Value "Test"
 
-	$script
+    $script
 }

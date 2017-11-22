@@ -3,15 +3,15 @@
 #
 
 Function Get-Script {
-	Param (
-		[string] $Path
-	)
+    Param (
+        [string] $Path
+    )
 
-	$Path = ( Get-Item -Path $Path ).FullName
+    $Path = ( Get-Item -Path $Path ).FullName
 
-	$script = @{
-		"Path" = $Path
-	}
+    $script = @{
+        "Path" = $Path
+    }
 
-	$script
+    $script
 }

@@ -3,12 +3,12 @@
 #
 
 Function New-Load {
-	Param (
-		$Project
-	)
+    Param (
+        $Project
+    )
 
-	@{
-		"Scripts" = $Project.Scripts
-		"ServerInstance" = $Project.ServerInstance
-	}
+    @{
+        "Scripts"        = $Project.Scripts
+        "ServerInstance" = $Project.ServerInstance
+    }
 }

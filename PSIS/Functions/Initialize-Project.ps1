@@ -3,8 +3,8 @@
 #
 
 Function Initialize-Project {
-	Param (
-		$Name,
-		$Path
-	)
+    Param (
+        $Name,
+        $Path
+    )
 }
