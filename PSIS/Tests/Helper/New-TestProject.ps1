@@ -1,5 +1,5 @@
 #
-# New_TestProject.ps1
+# New-TestProject.ps1
 #
 Import-Module "$PSScriptRoot\..\.." -Force
 
@@ -13,7 +13,7 @@ Function New-TestProject {
 
 	Write-Verbose "New test project in $Path from $( $Template.Path )"
 
-	$scripts = Get-ChildItem $Template.Path -Recurse | Foreach {
+	Get-ChildItem $Template.Path -Recurse | ForEach-Object {
 		$file = $_
 
 		Copy-Item `

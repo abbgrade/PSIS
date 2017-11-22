@@ -1,5 +1,5 @@
 #
-# Initialize_Project.ps1
+# Initialize-Project.ps1
 #
 
 Function Initialize-Project {

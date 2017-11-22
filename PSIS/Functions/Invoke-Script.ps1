@@ -1,5 +1,5 @@
 #
-# Invoke_Script.ps1
+# Invoke-Script.ps1
 #
 
 Add-Type -Path "C:\Program Files\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Smo.dll"

@@ -7,7 +7,7 @@ Describe "Get-Script" {
 		$projectName = "EmptyPSProject"
 		$projectPath = "$PSScriptRoot\$projectName"
 
-		$project = New-TestProject `
+		New-TestProject `
 			-Template (
 				Get-Project `
 					-Name $projectName `

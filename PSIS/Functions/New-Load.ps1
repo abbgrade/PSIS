@@ -1,5 +1,5 @@
 #
-# New_Load.ps1
+# New-Load.ps1
 #
 
 Function New-Load {

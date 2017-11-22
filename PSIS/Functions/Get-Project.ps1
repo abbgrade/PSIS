@@ -1,5 +1,5 @@
 #
-# Get_Project.ps1
+# Get-Project.ps1
 #
 
 Function Get-Project {
@@ -20,9 +20,9 @@ Function Get-Project {
 	Write-Verbose "ScriptPath: $ScriptsPath"
 
 	$scripts = Get-ChildItem $ScriptsPath -Recurse `
-		| Foreach { Get-Script -Path $_.FullName } `
+		| ForEach-Object { Get-Script -Path $_.FullName } `
 		| Where-Object { @('SQL', 'PS1') -contains $_.Path.Split(".")[-1].ToUpper() } `
-		| Sort Path
+		| Sort-Object Path
 
 	$project = @{
 		"Name" = $Name

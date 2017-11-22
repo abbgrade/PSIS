@@ -1,5 +1,5 @@
 #
-# New_Script.ps1
+# New-Script.ps1
 #
 
 Function New-Script {

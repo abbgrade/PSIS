@@ -7,7 +7,8 @@ Describe "Invoke-Load" {
 		BeforeEach {
 			$projectName = "EmptyPSProject"
 			$projectPath = "$PSScriptRoot\$projectName"
-
+			
+			[Diagnostics.CodeAnalysis.SuppressMessageAttribute("UseDeclaredVarsMoreThanAssignments")]
 			$project = New-TestProject `
 				-Template (
 					Get-Project `

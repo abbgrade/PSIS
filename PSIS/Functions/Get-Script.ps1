@@ -1,5 +1,5 @@
 #
-# Get_Script.ps1
+# Get-Script.ps1
 #
 
 Function Get-Script {
