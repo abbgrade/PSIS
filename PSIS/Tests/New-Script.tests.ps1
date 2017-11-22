@@ -8,7 +8,6 @@ Describe "New-Script" {
 			$projectName = "EmptyPSProject"
 			$projectPath = "$PSScriptRoot\$projectName"
 
-			[Diagnostics.CodeAnalysis.SuppressMessageAttribute("UseDeclaredVarsMoreThanAssignments")]
 			$project = New-TestProject `
 				-Template (
 					Get-Project `

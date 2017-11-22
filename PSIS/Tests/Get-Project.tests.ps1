@@ -4,8 +4,6 @@ Describe "Get-Project" {
 	Context "Test Project" {
 		BeforeEach {
 			$projectName = "EmptyPSProject"
-			
-			[Diagnostics.CodeAnalysis.SuppressMessageAttribute("UseDeclaredVarsMoreThanAssignments")]
 			$projectPath = "$PSScriptRoot/$projectName"
 		}
 
