@@ -37,7 +37,7 @@ Function Invoke-Script {
     Try {
         Switch ($type) {
             "SQL" {
-                Write-Verbose "Invoke '$( $Script.Path )' as SQL script"
+                Write-Verbose "Invoke-Script '$( $Script.Path )' as SQL script"
 
                 If ( -not $ServerInstance ) {
                     $result.ReturnCode = [ScriptReturnCode]::InvalidArgument
@@ -49,7 +49,7 @@ Function Invoke-Script {
                 $sqlServer.ConnectionContext.StatementTimeout = 0
 
                 Try {
-                    $sqlServer.ConnectionContext.ExecuteNonQuery($sqlSource)
+                    $_ = $sqlServer.ConnectionContext.ExecuteNonQuery($sqlSource)
                 }
                 Catch {
                     If ($_.Exception.InnerException.Message -eq "An exception occurred while executing a Transact-SQL statement or batch.") {

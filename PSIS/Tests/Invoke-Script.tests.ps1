@@ -10,7 +10,7 @@ Describe "Invoke-Script" {
             Get-Project `
                 -Name $projectName `
                 -Path $projectPath `
-                -ServerInstance '(localdb)\ProjectsV12'
+                -ServerInstance '(localdb)\MSSQLLocalDB'
         )
     }
 

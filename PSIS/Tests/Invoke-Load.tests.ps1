@@ -11,7 +11,7 @@ Describe "Invoke-Load" {
                 Get-Project `
                     -Name $projectName `
                     -Path $projectPath `
-                    -ServerInstance '(localdb)\ProjectsV12'
+                    -ServerInstance '(localdb)\MSSQLLocalDB'
             )
         }
         It "Invokes a load" {
@@ -38,6 +38,8 @@ Describe "Invoke-Load" {
 
             $load = New-Load -Project $project
             $result = Invoke-Load -Load $load
+
+            ConvertTo-Json $result | Write-Verbose
 
             $result.Count | Should be $project.Scripts.Count
             $result.Count | Should be 2

@@ -11,7 +11,7 @@ Function New-TestProject {
 
     $Path = ( Get-Item $Path ).FullName
 
-    Write-Verbose "New test project in $Path from $( $Template.Path )"
+    Write-Verbose "New-TestProject in $Path from $( $Template.Path )"
 
     Get-ChildItem $Template.Path -Recurse | ForEach-Object {
         $file = $_

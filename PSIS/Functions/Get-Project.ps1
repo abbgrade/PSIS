@@ -11,13 +11,13 @@ Function Get-Project {
     )
 
     $Path = ( Get-Item -Path $Path ).FullName
-    Write-Verbose "Path: $Path"
+    Write-Verbose "Get-Project from Path: $Path"
 
     If ( -not $ScriptsPath ) {
         $ScriptsPath = $Path
     }
     $ScriptsPath = ( Get-Item -Path $ScriptsPath ).FullName
-    Write-Verbose "ScriptPath: $ScriptsPath"
+    Write-Verbose "Get-Project with ScriptPath: $ScriptsPath"
 
     $scripts = Get-ChildItem $ScriptsPath -Recurse `
         | ForEach-Object { Get-Script -Path $_.FullName } `
